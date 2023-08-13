@@ -1,0 +1,61 @@
+﻿@page "/Cards"
+<PageTitle>Show Cards</PageTitle>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div class="row">
+        <div class="col-md-3">
+            @*<input class="btn btn-primary" value="CreateWeather" @onclick="OpenCreateModal"/>*@
+            <Button Caption="ثبت و تایید" Type="@ButtonTypes.Primary" IsSubmit="false" OnClick="OpenCreateModal">
+            </Button>
+            <Button Caption="انصراف" Type="@ButtonTypes.Secondary" TextColor="#000">
+            </Button>
+            <CustomSearchBox Placeholder="Summary" OnSearchChanged="GetForecasts">
+            </CustomSearchBox>
+
+            @*<CustomSearchBox Placeholder="Summary" OnSearchChanged="async (e)=>{SearchQuery=e;await GetFilteredForecasts();}">
+            </CustomSearchBox>*@
+            
+            <CreateWeatherModal @ref="createWeatherModal">
+            </CreateWeatherModal>
+            
+            <CustomSelect OnChange="HandleStatusChange" Options="statusList" />
+            
+            @*<CustomDatePicker Id="startDate" Label="از تاریخ" OnChange="HandleChangeStartDate" />*@
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var forecast in forecasts)
+        {
+@*            <div class="col-md-3">
+                <Card> 
+                    
+                    <Header>
+                        @forecast.Summary
+                    </Header>
+                    <Body>
+                    <h5 class="card-title">@forecast.Date</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </Body>
+                    
+                    <Footer>
+                        @forecast.TemperatureC
+                    </Footer>
+                </Card>
+            </div>*@
+
+            <WeatherCard></WeatherCard>
+        }
+    </div>
+
+   
+
+}
+

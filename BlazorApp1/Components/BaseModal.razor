@@ -1,0 +1,77 @@
+﻿
+<div class="modal @modalClass" tabindex="-1" role="dialog" style="display:@modalDisplay; overflow-y: auto;">
+    <div class="modal-dialog" style="width:@(Width+"%")" role="document">
+        <div class="modal-content">
+            <div class="modal-header custom-modal-header">
+                <div class="modal-title">@Title</div>
+                <div class="modal-close-btn">
+                    <img src="./images/svg/close-circle.svg" style="width: 24px;cursor: pointer;" @onclick="()=>Close()"/>
+                </div>
+            </div>
+            <div class="modal-body custom-modal-body">
+                <div class="custom-modal-content">
+                    @Body
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+@if (showBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+<style>
+    .custom-modal-header
+    {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    border: none !important;
+    }
+    .modal-title
+    {
+    font-size: 20px;
+    font-weight:700;
+    color: #0D6EFD;
+    }
+    .custom-modal-body
+    {
+    padding-top: 0 !important;
+    }
+</style>
+
+@code {
+
+    [Parameter]
+    public RenderFragment Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? Body { get; set; }
+
+    [Parameter]
+    public RenderFragment? Footer { get; set; }
+    [Parameter] public string Width{ get; set; }="80";
+    [Parameter] public EventCallback OnCloseClicked{ get; set; }
+    private string modalDisplay = "none; backdrop-filter: blur(5px);";
+    private string modalClass = "";
+    private bool showBackdrop = false;
+
+    public void Open()
+    {
+        modalDisplay = "block; backdrop-filter: blur(5px);background: rgba(203, 203, 203, 0.3);";
+        modalClass = "show";
+        showBackdrop = true;
+        StateHasChanged();
+    }
+
+    public async Task Close()
+    {
+        modalDisplay = "none; backdrop-filter: blur(5px);";
+        modalClass = "";
+        showBackdrop = false;
+        StateHasChanged();
+    }
+
+}

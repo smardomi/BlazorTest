@@ -1,0 +1,19 @@
+﻿.date-wrapper {
+    position: relative;
+    width: 212px;
+}
+
+.clear-button {
+    background-color: #F1F2F4;
+    position: absolute;
+    left: -20px;
+    height: 41px;
+    line-height: 41px;
+    border-radius: 8px 0px 0px 8px;
+    cursor: pointer;
+}
+
+    .clear-button img {
+        margin: 0px 5px 0px 5px;
+    }
+

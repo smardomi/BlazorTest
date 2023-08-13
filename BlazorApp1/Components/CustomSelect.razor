@@ -1,0 +1,38 @@
+﻿@using ChangeEventArgs = Microsoft.AspNetCore.Components.ChangeEventArgs
+
+<div style="margin: 5px;">
+
+    <select value="@SelectedValue" @onchange="HandleChange">
+
+        @if (!string.IsNullOrWhiteSpace(SelectText))
+        {
+            <option value="0">@SelectText</option>
+        }
+
+        @foreach (var option in Options)
+        {
+            <option value="@option.Key">@option.Value</option>
+        }
+    </select>
+
+</div>
+
+@code {
+    [Parameter]
+    public Dictionary<int, string> Options { get; set; }
+
+    [Parameter]
+    public string SelectText { get; set; } = string.Empty;
+
+    [Parameter]
+    public int SelectedValue { get; set; } = 0;
+
+    [Parameter]
+    public EventCallback<int> OnChange { get; set; }
+
+    private async Task HandleChange(ChangeEventArgs arg)
+    {
+        await OnChange.InvokeAsync(int.Parse(arg.Value.ToString()));
+    }
+
+}

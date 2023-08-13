@@ -1,0 +1,61 @@
+﻿
+<button class="@Type @(Disabled==true?"disabled-primary-button":"") button" type="@(IsSubmit==true?"submit":"button")"
+        @onclick="async ()=>{if(OnClick.HasDelegate)await OnClick.InvokeAsync();}" style="white-space: nowrap;" >
+    @if (Loading)
+    {
+        <span class="spinner-grow spinner-grow-sm" style="vertical-align:middle;" role="status" aria-hidden="true"></span>
+    }
+    @if (!string.IsNullOrEmpty(IconImageSrc))
+    {
+        <img src="@IconImageSrc" style="margin-left:10px;">
+    }
+    @Caption
+</button>
+<style>
+    .button {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'vazir-medium';
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.122924);
+        border-radius: 4px;
+        border: none;
+        min-width: 82px;
+        min-height:40px;
+    }
+
+    .disabled-primary-button
+    {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    .primary-button {
+        background-color: #0D6EFD;
+        color:#fff;
+    }
+
+    .secondary-button {
+        background-color: #CBCBCB;
+        color:#000;
+    }
+    
+</style>
+@code {
+    [Parameter]
+    public string Type { get; set; } = null!;
+    [Parameter]
+    public string Caption { get; set; } = null!;
+    [Parameter]
+    public string TextColor { get; set; } = "#fff";
+    [Parameter]
+    public bool Loading { get; set; } = false;
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+    [Parameter]
+    public string IconImageSrc { get; set; } = "";
+    [Parameter]
+    public bool IsSubmit { get; set; } = false;
+    
+}

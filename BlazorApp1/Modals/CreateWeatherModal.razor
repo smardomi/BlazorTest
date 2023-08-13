@@ -1,0 +1,63 @@
+﻿@using BlazorApp1.Validations
+@using BlazorApp1.Pages
+@using BlazorApp1.Extensions.Validator
+
+<BaseModal @ref="baseModal">
+    <Title>
+        Add Weather
+    </Title>
+    <Body>
+    <EditForm Model="model" OnInvalidSubmit="HandleInvalidSubmit" OnValidSubmit="HandleValidSubmit">
+        <FluentValidator TValidator="WeatherForecastValidator"></FluentValidator>
+        
+        
+        <div class="create-security-center-modal-content">
+            <input type="text" class="form-control" @bind="model.Summary"/>
+                <ValidationMessage For="()=>model.Summary"></ValidationMessage>
+
+        </div>
+    
+        <Button Caption="ثبت و تایید" Type="primary-button" IsSubmit="true">
+        </Button>
+
+    </EditForm>
+   
+    </Body>
+</BaseModal>
+<style>
+    .e-popup-open {
+        border: thin solid #ccc !important;
+    }
+
+    .validation-message {
+        margin-top: -11px;
+        margin-bottom: 5px;
+        color: red;
+        font-size: 12px;
+        font-weight: 500;
+    }
+</style>
+
+
+@code
+{
+    private BaseModal baseModal;
+    private WeatherForecast model { get; set; } = new();
+
+
+    public void Open()
+    {
+        baseModal.Open();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        
+        StateHasChanged();
+    }
+}

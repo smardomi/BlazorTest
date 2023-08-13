@@ -1,0 +1,89 @@
+﻿.create-security-center-modal-content {
+    border: none;
+    border-top: 0.5px dashed #0D6EFD;
+    padding: 55px 186px 32px 142px;
+    position: relative;
+    min-height: 667px;
+}
+
+.gates-textbox {
+    display: flex !important;
+    flex-wrap: unset !important;
+    direction: rtl;
+}
+
+.create-security-center-modal-create-gate {
+    height: 40px;
+    border: 1px dashed #0D6EFD;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 16px;
+    margin-bottom: 50px;
+}
+
+    .create-security-center-modal-create-gate:hover {
+        background-color: #F9F9F9;
+    }
+
+    .create-security-center-modal-create-gate img {
+        width: 24px;
+        height: 24px;
+    }
+
+.borderless-h100 {
+    border: none !important;
+    height: 100%;
+}
+
+.gates-textbox {
+    margin-bottom: 16px;
+}
+
+.btn-small {
+    font-size: 14px !important;
+    font-weight: 400;
+}
+
+.action-buttons {
+    position: absolute;
+    bottom: 32px;
+    left: 142px;
+    display: flex;
+    gap: 8px;
+}
+.gate-item
+{
+    position:relative;
+}
+.gate-list-delete-btn
+{
+    position:absolute;
+    left:-30px;
+    top:50%;
+    transform:translateY(-50%);
+}
+    .gate-list-delete-btn img {
+        cursor: pointer;
+        margin-right: 8px;
+    }
+
+.validation-message {
+    margin-top: -11px;
+    margin-bottom: 5px;
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.centers-drowdown-component {
+    margin-bottom: 16px;
+}
+
+.employees-multi-select-component {
+    margin-bottom: 16px;
+}

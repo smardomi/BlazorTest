@@ -1,0 +1,24 @@
+﻿ 
+<div class="col-md-2 mb-5">
+    <div class="bg-white rounded shadow-sm text-center card-border py-5">
+        <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" class="img-size img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+        <h5 class="mb-0">Manuella Nevoresky</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+        <hr class="solid">
+        <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment Body { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+
+    //[Parameter]
+    //public RenderFragment ChildContent { set; get; }
+}

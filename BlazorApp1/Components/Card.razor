@@ -1,0 +1,31 @@
+﻿ 
+<div class="card text-center">
+    @if (Header != null)
+    {
+        <div class="card-header">
+            @Header
+        </div>
+    }
+    
+   
+    <div class="card-body">
+        @Body
+    </div>
+    
+    @if (Footer != null)
+    {
+        <div class="card-footer text-muted">
+            @Footer
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment Body { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+
+    //[Parameter]
+    //public RenderFragment ChildContent { set; get; }
+}

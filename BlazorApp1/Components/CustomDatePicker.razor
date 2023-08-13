@@ -1,0 +1,33 @@
+﻿<div class="date-wrapper">
+    <span>@Label</span>
+    <InputPersianDatePicker Id="@Id"
+                            PickerOffsetTopPositionInPixels="1"
+                            CalendarType="Calendar.SingleModeJalali"
+                            DigitType="DigitType.English"
+                            DateFormat="DateFormat.yyyy_slash_MM_slash_dd"
+                            MinDateSetOnToday="false"
+                            Placeholder=""
+                            @bind-Value="selectedDate"
+                            OnChange="s=>OnChange.InvokeAsync(s)"
+                            CssClass="date-input"
+                            Style=""
+                            Theme="default" 
+                            />
+    <div class="clear-button">
+        <img src="./images/svg/close-circle.svg" @onclick="()=>{OnChange.InvokeAsync(null);selectedDate=null;}" width="24" height="24" />
+    </div>
+</div>
+
+@code {
+    private string? selectedDate = null;
+    private InputPersianDatePicker datePicker=null!;
+    [Parameter]
+    public string Id { get; set; } = null!;
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnChange { get; set; }
+    
+}
