@@ -1,0 +1,69 @@
+﻿@inject NotificationService NotificationService
+
+<div class="toast-message">
+    <SfToast @ref="Toast" ExtendedTimeout=15000  CssClass="@Options.Type" Height="48" Width="500">
+        <ToastEvents OnClick="@OnClickHandler"></ToastEvents>
+        <ToastTemplates>
+          
+            <Content>
+                <div class="d-flex toast-content">
+                    <img src="./images/svg/@(Options.Type==NotificationType.Success?"tick-circle.svg":"danger.svg")" />
+                    <p>@Options.Content</p>
+                </div>
+                
+            </Content>
+        </ToastTemplates>
+        <ToastPosition X="Right" Y="Bottom"></ToastPosition>
+    </SfToast>
+
+</div>
+<style>
+    .toast-content p{
+        font-size:14px;
+        font-weight:400;
+        margin-right:10px;
+    }
+
+    .e-toast-container .e-toast.e-toast-success
+    {
+        background: #D6E6DF;
+        color: #265035;
+    }
+
+    .e-toast-container .e-toast.e-toast-danger
+    {
+        background: #F3D8DB;
+        color: #7A282B;
+    }
+</style>
+
+@code {
+    SfToast Toast;
+
+    private NotificationOption Options = new ();
+    private bool IsToastVisible { get; set; } = false;
+    protected override void OnInitialized()
+    {
+        NotificationService.ShowNotificationTrigger += (NotificationOption options) =>
+        {
+           
+
+
+            InvokeAsync(async () =>
+            {
+                this.Options.Type = options.Type;
+                this.Options.Title = options.Title;
+                this.Options.Content = options.Content;
+                this.IsToastVisible = true;
+                await Task.Delay(100);
+                this.StateHasChanged();
+                await this.Toast.ShowAsync();
+            });
+        };
+        base.OnInitialized();
+    }
+    public void OnClickHandler(ToastClickEventArgs args)
+    {
+        args.ClickToClose = true;
+    }
+}

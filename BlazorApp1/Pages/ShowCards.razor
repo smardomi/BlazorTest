@@ -27,32 +27,35 @@ else
             <CustomSelect OnChange="HandleStatusChange" Options="statusList" />
             
             @*<CustomDatePicker Id="startDate" Label="از تاریخ" OnChange="HandleChangeStartDate" />*@
+
+            <br/>   
+            <SfDropDownList TValue="int" TItem="WeatherForecast" AllowFiltering="true" Placeholder="Select a weather" DataSource="@forecasts">
+                <DropDownListFieldSettings Value="TemperatureC" Text="TemperatureC"></DropDownListFieldSettings>
+                <DropDownListEvents TValue="int" TItem="WeatherForecast" ValueChange="OnValueChange"></DropDownListEvents>
+            </SfDropDownList>
+            
+            <br/>   
+            
+            <SfMultiSelect TValue="string[]" TItem="Games" Placeholder="Favorite Sports" DataSource="@LocalData">
+                <MultiSelectFieldSettings Text="Text" Value="ID"></MultiSelectFieldSettings>
+            </SfMultiSelect>
         </div>
     </div>
-
+    
+<br />
     <div class="row">
-        @foreach (var forecast in forecasts)
-        {
-@*            <div class="col-md-3">
-                <Card> 
-                    
-                    <Header>
-                        @forecast.Summary
-                    </Header>
-                    <Body>
-                    <h5 class="card-title">@forecast.Date</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </Body>
-                    
-                    <Footer>
-                        @forecast.TemperatureC
-                    </Footer>
-                </Card>
-            </div>*@
 
-            <WeatherCard></WeatherCard>
-        }
+        <InfiniteScrolling ObserverTargetId="observerTarget" ObservableTargetReached="GetFilteredForecasts">
+          
+            @foreach (var forecast in forecasts)
+            {
+                <WeatherCard></WeatherCard>
+            }
+
+            <div id="observerTarget"></div>
+
+        </InfiniteScrolling>
+       
     </div>
 
    

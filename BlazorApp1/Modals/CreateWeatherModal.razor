@@ -1,25 +1,41 @@
 ﻿@using BlazorApp1.Validations
 @using BlazorApp1.Pages
 @using BlazorApp1.Extensions.Validator
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+
 
 <BaseModal @ref="baseModal">
     <Title>
         Add Weather
     </Title>
     <Body>
-    <EditForm Model="model" OnInvalidSubmit="HandleInvalidSubmit" OnValidSubmit="HandleValidSubmit">
-        <FluentValidator TValidator="WeatherForecastValidator"></FluentValidator>
+@*    <EditForm Model="model" OnInvalidSubmit="HandleInvalidSubmit" OnValidSubmit="HandleValidSubmit">
+       
         
         
         <div class="create-security-center-modal-content">
             <input type="text" class="form-control" @bind="model.Summary"/>
-                <ValidationMessage For="()=>model.Summary"></ValidationMessage>
+          
 
         </div>
     
         <Button Caption="ثبت و تایید" Type="primary-button" IsSubmit="true">
         </Button>
 
+    </EditForm>*@
+    <EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+          <FluentValidator TValidator="WeatherForecastValidator"></FluentValidator>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="First Name" @bind-Value="model.Summary"></SfTextBox>  
+                <ValidationMessage For="()=>model.Summary"></ValidationMessage>
+            </div>
+
+        </div>
+        <p>
+            <SfButton>Submit</SfButton>
+        </p>
     </EditForm>
    
     </Body>
