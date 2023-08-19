@@ -1,41 +1,57 @@
-﻿@page "/ShowComponents"
+﻿@using Syncfusion.Blazor.Cards
+@using Syncfusion.Blazor.SplitButtons
+@page "/ShowComponents"
 
 <PageTitle>ShowComponents</PageTitle>
 
 
-<SfMultiSelect TValue="string[]" TItem="Country" Placeholder="e.g. Australia" DataSource="@Countries">
-    <MultiSelectFieldSettings Text="Name" Value="Code"></MultiSelectFieldSettings>
-</SfMultiSelect>
+<SfCard>
+    <CardHeader Title="Explore Cities">
+        <div class="colored-bar"></div>
+        <SfDropDownButton>
+            <DropDownMenuItems>
+                <DropDownMenuItem Text="Edit"></DropDownMenuItem>
+                <DropDownMenuItem Text="Delete"></DropDownMenuItem>
+                <DropDownMenuItem Text="Mark as Read"></DropDownMenuItem>
+                <DropDownMenuItem Text="Like Message"></DropDownMenuItem>
+            </DropDownMenuItems>
+        </SfDropDownButton>
+    </CardHeader>
+    <CardContent EnableSeparator="true">
+        Sydney is a city on the east coast of Australia. Sydney is the capital city of New South
+        Wales. About four million people live in Sydney which makes it the biggest cityin Oceania.
+    </CardContent>
+</SfCard>
 
-@code {
 
-    public class Country
-    {
-        public string Name { get; set; }
 
-        public string Code { get; set; }
+
+      <style>
+    .card {
+      position: relative;
+    }
+    
+    .colored-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px; /* Width of the colored bar */
+      background-color: #ff5733; /* Your desired color */
+    }
+    
+    .card-body {
+      margin-right: 15px; /* Space for the colored bar */
     }
 
-    List<Country> Countries = new List<Country>
-    {
-        new Country() { Name = "Australia", Code = "AU" },
-        new Country() { Name = "Bermuda", Code = "BM" },
-        new Country() { Name = "Canada", Code = "CA" },
-        new Country() { Name = "Cameroon", Code = "CM" },
-        new Country() { Name = "Denmark", Code = "DK" },
-        new Country() { Name = "France", Code = "FR" },
-        new Country() { Name = "Finland", Code = "FI" },
-        new Country() { Name = "Germany", Code = "DE" },
-        new Country() { Name = "Greenland", Code = "GL" },
-        new Country() { Name = "Hong Kong", Code = "HK" },
-        new Country() { Name = "India", Code = "IN" },
-        new Country() { Name = "Italy", Code = "IT" },
-        new Country() { Name = "Japan", Code = "JP" },
-        new Country() { Name = "Mexico", Code = "MX" },
-        new Country() { Name = "Norway", Code = "NO" },
-        new Country() { Name = "Poland", Code = "PL" },
-        new Country() { Name = "Switzerland", Code = "CH" },
-        new Country() { Name = "United Kingdom", Code = "GB" },
-        new Country() { Name = "United States", Code = "US" },
-    };
-}
+    .e-card .e-card-separator {
+        width: 98%;
+        margin: auto;
+    }
+
+    .e-dropdown-btn .e-caret::before, .e-dropdown-btn.e-btn .e-caret::before {
+        content: url('/images/svg/calendar.svg');
+    }
+
+
+  </style>
